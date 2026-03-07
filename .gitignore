@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.idea/
+.DS_Store
+local.properties
+.gradle/
+build/
+mobile/.gradle/
+mobile/app/build/
+
