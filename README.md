@@ -78,4 +78,3 @@ Backend tests:
 ```bash
 pytest
 ```
-
