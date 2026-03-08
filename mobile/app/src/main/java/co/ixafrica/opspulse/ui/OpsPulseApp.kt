@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScrollableTabRow
@@ -37,7 +38,7 @@ private enum class OpsTab(val label: String) {
     Alerts("Alerts"),
     Setup("Setup"),
 }
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OpsPulseApp(viewModel: OpsPulseViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()

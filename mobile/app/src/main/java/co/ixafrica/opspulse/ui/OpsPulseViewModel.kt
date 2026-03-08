@@ -28,10 +28,6 @@ class OpsPulseViewModel(
     private val _uiState = MutableStateFlow(OpsPulseUiState())
     val uiState: StateFlow<OpsPulseUiState> = _uiState.asStateFlow()
 
-    init {
-        refreshAll()
-    }
-
     fun updateGatewayUrl(value: String) {
         _uiState.update { current -> current.copy(gatewayUrl = value) }
     }
@@ -43,6 +39,12 @@ class OpsPulseViewModel(
     fun refreshAll() {
         viewModelScope.launch {
             val baseUrl = uiState.value.gatewayUrl
+            if (!baseUrl.startsWith("http://") && !baseUrl.startsWith("https://")) {
+                _uiState.update { current ->
+                    current.copy(errorMessage = "Gateway URL must start with http:// or https://")
+                }
+                return@launch
+            }
             _uiState.update { current -> current.copy(isLoading = true, errorMessage = null) }
 
             runCatching {
